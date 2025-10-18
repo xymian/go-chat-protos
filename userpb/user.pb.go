@@ -4,7 +4,7 @@
 // 	protoc        v6.33.0
 // source: user/user.proto
 
-package user
+package userpb
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -153,7 +153,7 @@ var File_user_user_proto protoreflect.FileDescriptor
 
 const file_user_user_proto_rawDesc = "" +
 	"\n" +
-	"\x0fuser/user.proto\x12\x04user\"\x1d\n" +
+	"\x0fuser/user.proto\x12\x06userpb\"\x1d\n" +
 	"\vUserRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\"\xbe\x01\n" +
 	"\fUserResponse\x12\x0e\n" +
@@ -162,9 +162,9 @@ const file_user_user_proto_rawDesc = "" +
 	"\fpasswordHash\x18\x03 \x01(\tR\fpasswordHash\x12\"\n" +
 	"\finteractions\x18\x04 \x01(\tR\finteractions\x12\x1c\n" +
 	"\tcreatedAt\x18\x05 \x01(\tR\tcreatedAt\x12\x1c\n" +
-	"\tupdatedAt\x18\x06 \x01(\tR\tupdatedAt2?\n" +
-	"\vUserService\x120\n" +
-	"\aGetUser\x12\x11.user.UserRequest\x1a\x12.user.UserResponseB'Z%github.com/xymian/go-chat-protos/userb\x06proto3"
+	"\tupdatedAt\x18\x06 \x01(\tR\tupdatedAt2C\n" +
+	"\vUserService\x124\n" +
+	"\aGetUser\x12\x13.userpb.UserRequest\x1a\x14.userpb.UserResponseB\tZ\auserpb/b\x06proto3"
 
 var (
 	file_user_user_proto_rawDescOnce sync.Once
@@ -180,12 +180,12 @@ func file_user_user_proto_rawDescGZIP() []byte {
 
 var file_user_user_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_user_user_proto_goTypes = []any{
-	(*UserRequest)(nil),  // 0: user.UserRequest
-	(*UserResponse)(nil), // 1: user.UserResponse
+	(*UserRequest)(nil),  // 0: userpb.UserRequest
+	(*UserResponse)(nil), // 1: userpb.UserResponse
 }
 var file_user_user_proto_depIdxs = []int32{
-	0, // 0: user.UserService.GetUser:input_type -> user.UserRequest
-	1, // 1: user.UserService.GetUser:output_type -> user.UserResponse
+	0, // 0: userpb.UserService.GetUser:input_type -> userpb.UserRequest
+	1, // 1: userpb.UserService.GetUser:output_type -> userpb.UserResponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package user;
+package userpb;
 
-option go_package = "github.com/xymian/go-chat-protos/user";
+option go_package = "userpb/";
 
 message UserRequest {
     uint64 id = 1;
