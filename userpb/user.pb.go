@@ -164,7 +164,7 @@ const file_user_user_proto_rawDesc = "" +
 	"\tcreatedAt\x18\x05 \x01(\tR\tcreatedAt\x12\x1c\n" +
 	"\tupdatedAt\x18\x06 \x01(\tR\tupdatedAt2C\n" +
 	"\vUserService\x124\n" +
-	"\aGetUser\x12\x13.userpb.UserRequest\x1a\x14.userpb.UserResponseB\tZ\auserpb/b\x06proto3"
+	"\aGetUser\x12\x13.userpb.UserRequest\x1a\x14.userpb.UserResponseB)Z'github.com/xymian/go-chat-protos/userpbb\x06proto3"
 
 var (
 	file_user_user_proto_rawDescOnce sync.Once
