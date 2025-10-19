@@ -9,6 +9,7 @@ package userpb
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -149,11 +150,55 @@ func (x *UserResponse) GetUpdatedAt() string {
 	return ""
 }
 
+type UserListResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Users         []*UserResponse        `protobuf:"bytes,1,rep,name=users,proto3" json:"users,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserListResponse) Reset() {
+	*x = UserListResponse{}
+	mi := &file_user_user_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserListResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserListResponse) ProtoMessage() {}
+
+func (x *UserListResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_user_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserListResponse.ProtoReflect.Descriptor instead.
+func (*UserListResponse) Descriptor() ([]byte, []int) {
+	return file_user_user_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *UserListResponse) GetUsers() []*UserResponse {
+	if x != nil {
+		return x.Users
+	}
+	return nil
+}
+
 var File_user_user_proto protoreflect.FileDescriptor
 
 const file_user_user_proto_rawDesc = "" +
 	"\n" +
-	"\x0fuser/user.proto\x12\x06userpb\"%\n" +
+	"\x0fuser/user.proto\x12\x06userpb\x1a\x1bgoogle/protobuf/empty.proto\"%\n" +
 	"\vUserRequest\x12\x16\n" +
 	"\x06userId\x18\x01 \x01(\tR\x06userId\"\xbe\x01\n" +
 	"\fUserResponse\x12\x0e\n" +
@@ -162,9 +207,12 @@ const file_user_user_proto_rawDesc = "" +
 	"\fpasswordHash\x18\x03 \x01(\tR\fpasswordHash\x12\"\n" +
 	"\finteractions\x18\x04 \x01(\tR\finteractions\x12\x1c\n" +
 	"\tcreatedAt\x18\x05 \x01(\tR\tcreatedAt\x12\x1c\n" +
-	"\tupdatedAt\x18\x06 \x01(\tR\tupdatedAt2C\n" +
+	"\tupdatedAt\x18\x06 \x01(\tR\tupdatedAt\">\n" +
+	"\x10UserListResponse\x12*\n" +
+	"\x05users\x18\x01 \x03(\v2\x14.userpb.UserResponseR\x05users2\x81\x01\n" +
 	"\vUserService\x124\n" +
-	"\aGetUser\x12\x13.userpb.UserRequest\x1a\x14.userpb.UserResponseB\tZ\auserpb/b\x06proto3"
+	"\aGetUser\x12\x13.userpb.UserRequest\x1a\x14.userpb.UserResponse\x12<\n" +
+	"\bGetUsers\x12\x16.google.protobuf.Empty\x1a\x18.userpb.UserListResponseB\tZ\auserpb/b\x06proto3"
 
 var (
 	file_user_user_proto_rawDescOnce sync.Once
@@ -178,19 +226,24 @@ func file_user_user_proto_rawDescGZIP() []byte {
 	return file_user_user_proto_rawDescData
 }
 
-var file_user_user_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_user_user_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_user_user_proto_goTypes = []any{
-	(*UserRequest)(nil),  // 0: userpb.UserRequest
-	(*UserResponse)(nil), // 1: userpb.UserResponse
+	(*UserRequest)(nil),      // 0: userpb.UserRequest
+	(*UserResponse)(nil),     // 1: userpb.UserResponse
+	(*UserListResponse)(nil), // 2: userpb.UserListResponse
+	(*emptypb.Empty)(nil),    // 3: google.protobuf.Empty
 }
 var file_user_user_proto_depIdxs = []int32{
-	0, // 0: userpb.UserService.GetUser:input_type -> userpb.UserRequest
-	1, // 1: userpb.UserService.GetUser:output_type -> userpb.UserResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	1, // 0: userpb.UserListResponse.users:type_name -> userpb.UserResponse
+	0, // 1: userpb.UserService.GetUser:input_type -> userpb.UserRequest
+	3, // 2: userpb.UserService.GetUsers:input_type -> google.protobuf.Empty
+	1, // 3: userpb.UserService.GetUser:output_type -> userpb.UserResponse
+	2, // 4: userpb.UserService.GetUsers:output_type -> userpb.UserListResponse
+	3, // [3:5] is the sub-list for method output_type
+	1, // [1:3] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_user_user_proto_init() }
@@ -204,7 +257,7 @@ func file_user_user_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_user_user_proto_rawDesc), len(file_user_user_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

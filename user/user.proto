@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package userpb;
 
+import "google/protobuf/empty.proto";
+
 option go_package = "userpb/";
 
 message UserRequest {
@@ -17,6 +19,11 @@ message UserResponse {
     string updatedAt = 6;
 }
 
+message UserListResponse {
+    repeated UserResponse users = 1;
+}
+
 service UserService {
-    rpc GetUser (UserRequest) returns (UserResponse);
+    rpc GetUser(UserRequest) returns (UserResponse);
+    rpc GetUsers(google.protobuf.Empty) returns (UserListResponse);
 }
