@@ -209,8 +209,10 @@ const file_user_user_proto_rawDesc = "" +
 	"\tcreatedAt\x18\x05 \x01(\tR\tcreatedAt\x12\x1c\n" +
 	"\tupdatedAt\x18\x06 \x01(\tR\tupdatedAt\">\n" +
 	"\x10UserListResponse\x12*\n" +
-	"\x05users\x18\x01 \x03(\v2\x14.userpb.UserResponseR\x05users2\x81\x01\n" +
-	"\vUserService\x124\n" +
+	"\x05users\x18\x01 \x03(\v2\x14.userpb.UserResponseR\x05users2\xbd\x01\n" +
+	"\vUserService\x12:\n" +
+	"\n" +
+	"Insertuser\x12\x14.userpb.UserResponse\x1a\x16.google.protobuf.Empty\x124\n" +
 	"\aGetUser\x12\x13.userpb.UserRequest\x1a\x14.userpb.UserResponse\x12<\n" +
 	"\bGetUsers\x12\x16.google.protobuf.Empty\x1a\x18.userpb.UserListResponseB\tZ\auserpb/b\x06proto3"
 
@@ -235,12 +237,14 @@ var file_user_user_proto_goTypes = []any{
 }
 var file_user_user_proto_depIdxs = []int32{
 	1, // 0: userpb.UserListResponse.users:type_name -> userpb.UserResponse
-	0, // 1: userpb.UserService.GetUser:input_type -> userpb.UserRequest
-	3, // 2: userpb.UserService.GetUsers:input_type -> google.protobuf.Empty
-	1, // 3: userpb.UserService.GetUser:output_type -> userpb.UserResponse
-	2, // 4: userpb.UserService.GetUsers:output_type -> userpb.UserListResponse
-	3, // [3:5] is the sub-list for method output_type
-	1, // [1:3] is the sub-list for method input_type
+	1, // 1: userpb.UserService.Insertuser:input_type -> userpb.UserResponse
+	0, // 2: userpb.UserService.GetUser:input_type -> userpb.UserRequest
+	3, // 3: userpb.UserService.GetUsers:input_type -> google.protobuf.Empty
+	3, // 4: userpb.UserService.Insertuser:output_type -> google.protobuf.Empty
+	1, // 5: userpb.UserService.GetUser:output_type -> userpb.UserResponse
+	2, // 6: userpb.UserService.GetUsers:output_type -> userpb.UserListResponse
+	4, // [4:7] is the sub-list for method output_type
+	1, // [1:4] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
 	1, // [1:1] is the sub-list for extension extendee
 	0, // [0:1] is the sub-list for field type_name
