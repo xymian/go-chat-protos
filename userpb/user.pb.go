@@ -23,7 +23,7 @@ const (
 
 type UserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=userId,proto3" json:"userId,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -58,11 +58,11 @@ func (*UserRequest) Descriptor() ([]byte, []int) {
 	return file_user_user_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *UserRequest) GetId() uint64 {
+func (x *UserRequest) GetUserId() string {
 	if x != nil {
-		return x.Id
+		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 type UserResponse struct {
@@ -153,9 +153,9 @@ var File_user_user_proto protoreflect.FileDescriptor
 
 const file_user_user_proto_rawDesc = "" +
 	"\n" +
-	"\x0fuser/user.proto\x12\x06userpb\"\x1d\n" +
-	"\vUserRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x04R\x02id\"\xbe\x01\n" +
+	"\x0fuser/user.proto\x12\x06userpb\"%\n" +
+	"\vUserRequest\x12\x16\n" +
+	"\x06userId\x18\x01 \x01(\tR\x06userId\"\xbe\x01\n" +
 	"\fUserResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x1a\n" +
 	"\busername\x18\x02 \x01(\tR\busername\x12\"\n" +
@@ -164,7 +164,7 @@ const file_user_user_proto_rawDesc = "" +
 	"\tcreatedAt\x18\x05 \x01(\tR\tcreatedAt\x12\x1c\n" +
 	"\tupdatedAt\x18\x06 \x01(\tR\tupdatedAt2C\n" +
 	"\vUserService\x124\n" +
-	"\aGetUser\x12\x13.userpb.UserRequest\x1a\x14.userpb.UserResponseB)Z'github.com/xymian/go-chat-protos/userpbb\x06proto3"
+	"\aGetUser\x12\x13.userpb.UserRequest\x1a\x14.userpb.UserResponseB\tZ\auserpb/b\x06proto3"
 
 var (
 	file_user_user_proto_rawDescOnce sync.Once
