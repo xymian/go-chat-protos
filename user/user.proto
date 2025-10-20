@@ -19,11 +19,23 @@ message UserResponse {
     string updatedAt = 6;
 }
 
+message AddConversationRequest {
+    UserResponse user = 1;
+    Conversation conversation = 2;
+
+}
+
+message Conversation {
+    string username = 1;
+    string chatRef = 2;
+}
+
 message UserListResponse {
     repeated UserResponse users = 1;
 }
 
 service UserService {
+    rpc AddConversation(AddConversationRequest) returns (google.protobuf.Empty);
     rpc DeleteUser(UserRequest) returns (UserResponse);
     rpc Insertuser(UserResponse) returns (UserResponse);
     rpc GetUser(UserRequest) returns (UserResponse);

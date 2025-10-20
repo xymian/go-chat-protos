@@ -20,16 +20,18 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	UserService_DeleteUser_FullMethodName = "/userpb.UserService/DeleteUser"
-	UserService_Insertuser_FullMethodName = "/userpb.UserService/Insertuser"
-	UserService_GetUser_FullMethodName    = "/userpb.UserService/GetUser"
-	UserService_GetUsers_FullMethodName   = "/userpb.UserService/GetUsers"
+	UserService_AddConversation_FullMethodName = "/userpb.UserService/AddConversation"
+	UserService_DeleteUser_FullMethodName      = "/userpb.UserService/DeleteUser"
+	UserService_Insertuser_FullMethodName      = "/userpb.UserService/Insertuser"
+	UserService_GetUser_FullMethodName         = "/userpb.UserService/GetUser"
+	UserService_GetUsers_FullMethodName        = "/userpb.UserService/GetUsers"
 )
 
 // UserServiceClient is the client API for UserService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserServiceClient interface {
+	AddConversation(ctx context.Context, in *AddConversationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DeleteUser(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserResponse, error)
 	Insertuser(ctx context.Context, in *UserResponse, opts ...grpc.CallOption) (*UserResponse, error)
 	GetUser(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserResponse, error)
@@ -42,6 +44,16 @@ type userServiceClient struct {
 
 func NewUserServiceClient(cc grpc.ClientConnInterface) UserServiceClient {
 	return &userServiceClient{cc}
+}
+
+func (c *userServiceClient) AddConversation(ctx context.Context, in *AddConversationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, UserService_AddConversation_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *userServiceClient) DeleteUser(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserResponse, error) {
@@ -88,6 +100,7 @@ func (c *userServiceClient) GetUsers(ctx context.Context, in *emptypb.Empty, opt
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility.
 type UserServiceServer interface {
+	AddConversation(context.Context, *AddConversationRequest) (*emptypb.Empty, error)
 	DeleteUser(context.Context, *UserRequest) (*UserResponse, error)
 	Insertuser(context.Context, *UserResponse) (*UserResponse, error)
 	GetUser(context.Context, *UserRequest) (*UserResponse, error)
@@ -102,6 +115,9 @@ type UserServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedUserServiceServer struct{}
 
+func (UnimplementedUserServiceServer) AddConversation(context.Context, *AddConversationRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddConversation not implemented")
+}
 func (UnimplementedUserServiceServer) DeleteUser(context.Context, *UserRequest) (*UserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUser not implemented")
 }
@@ -133,6 +149,24 @@ func RegisterUserServiceServer(s grpc.ServiceRegistrar, srv UserServiceServer) {
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&UserService_ServiceDesc, srv)
+}
+
+func _UserService_AddConversation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddConversationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).AddConversation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_AddConversation_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).AddConversation(ctx, req.(*AddConversationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _UserService_DeleteUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -214,6 +248,10 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "userpb.UserService",
 	HandlerType: (*UserServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "AddConversation",
+			Handler:    _UserService_AddConversation_Handler,
+		},
 		{
 			MethodName: "DeleteUser",
 			Handler:    _UserService_DeleteUser_Handler,
