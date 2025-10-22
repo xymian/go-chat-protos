@@ -14,18 +14,18 @@ message UserResponse {
     uint64 id = 1;
     string username = 2;
     string passwordHash = 3;
-    string interactions = 4;
+    string chatReferences = 4;
     string createdAt = 5;
     string updatedAt = 6;
 }
 
-message AddConversationRequest {
+message AddChatRequest {
     UserResponse user = 1;
-    Conversation conversation = 2;
+    Chat chat = 2;
 
 }
 
-message Conversation {
+message Chat {
     string username = 1;
     string chatRef = 2;
 }
@@ -35,7 +35,7 @@ message UserListResponse {
 }
 
 service UserService {
-    rpc AddConversation(AddConversationRequest) returns (google.protobuf.Empty);
+    rpc AddConversation(AddChatRequest) returns (google.protobuf.Empty);
     rpc DeleteUser(UserRequest) returns (UserResponse);
     rpc Insertuser(UserResponse) returns (UserResponse);
     rpc GetUser(UserRequest) returns (UserResponse);

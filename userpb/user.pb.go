@@ -67,15 +67,15 @@ func (x *UserRequest) GetUserId() string {
 }
 
 type UserResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Username      string                 `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
-	PasswordHash  string                 `protobuf:"bytes,3,opt,name=passwordHash,proto3" json:"passwordHash,omitempty"`
-	Interactions  string                 `protobuf:"bytes,4,opt,name=interactions,proto3" json:"interactions,omitempty"`
-	CreatedAt     string                 `protobuf:"bytes,5,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
-	UpdatedAt     string                 `protobuf:"bytes,6,opt,name=updatedAt,proto3" json:"updatedAt,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Id             uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Username       string                 `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
+	PasswordHash   string                 `protobuf:"bytes,3,opt,name=passwordHash,proto3" json:"passwordHash,omitempty"`
+	ChatReferences string                 `protobuf:"bytes,4,opt,name=chatReferences,proto3" json:"chatReferences,omitempty"`
+	CreatedAt      string                 `protobuf:"bytes,5,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
+	UpdatedAt      string                 `protobuf:"bytes,6,opt,name=updatedAt,proto3" json:"updatedAt,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *UserResponse) Reset() {
@@ -129,9 +129,9 @@ func (x *UserResponse) GetPasswordHash() string {
 	return ""
 }
 
-func (x *UserResponse) GetInteractions() string {
+func (x *UserResponse) GetChatReferences() string {
 	if x != nil {
-		return x.Interactions
+		return x.ChatReferences
 	}
 	return ""
 }
@@ -150,28 +150,28 @@ func (x *UserResponse) GetUpdatedAt() string {
 	return ""
 }
 
-type AddConversationRequest struct {
+type AddChatRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	User          *UserResponse          `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
-	Conversation  *Conversation          `protobuf:"bytes,2,opt,name=conversation,proto3" json:"conversation,omitempty"`
+	Chat          *Chat                  `protobuf:"bytes,2,opt,name=chat,proto3" json:"chat,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *AddConversationRequest) Reset() {
-	*x = AddConversationRequest{}
+func (x *AddChatRequest) Reset() {
+	*x = AddChatRequest{}
 	mi := &file_user_user_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *AddConversationRequest) String() string {
+func (x *AddChatRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*AddConversationRequest) ProtoMessage() {}
+func (*AddChatRequest) ProtoMessage() {}
 
-func (x *AddConversationRequest) ProtoReflect() protoreflect.Message {
+func (x *AddChatRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_user_user_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -183,26 +183,26 @@ func (x *AddConversationRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use AddConversationRequest.ProtoReflect.Descriptor instead.
-func (*AddConversationRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use AddChatRequest.ProtoReflect.Descriptor instead.
+func (*AddChatRequest) Descriptor() ([]byte, []int) {
 	return file_user_user_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *AddConversationRequest) GetUser() *UserResponse {
+func (x *AddChatRequest) GetUser() *UserResponse {
 	if x != nil {
 		return x.User
 	}
 	return nil
 }
 
-func (x *AddConversationRequest) GetConversation() *Conversation {
+func (x *AddChatRequest) GetChat() *Chat {
 	if x != nil {
-		return x.Conversation
+		return x.Chat
 	}
 	return nil
 }
 
-type Conversation struct {
+type Chat struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
 	ChatRef       string                 `protobuf:"bytes,2,opt,name=chatRef,proto3" json:"chatRef,omitempty"`
@@ -210,20 +210,20 @@ type Conversation struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *Conversation) Reset() {
-	*x = Conversation{}
+func (x *Chat) Reset() {
+	*x = Chat{}
 	mi := &file_user_user_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Conversation) String() string {
+func (x *Chat) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Conversation) ProtoMessage() {}
+func (*Chat) ProtoMessage() {}
 
-func (x *Conversation) ProtoReflect() protoreflect.Message {
+func (x *Chat) ProtoReflect() protoreflect.Message {
 	mi := &file_user_user_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -235,19 +235,19 @@ func (x *Conversation) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Conversation.ProtoReflect.Descriptor instead.
-func (*Conversation) Descriptor() ([]byte, []int) {
+// Deprecated: Use Chat.ProtoReflect.Descriptor instead.
+func (*Chat) Descriptor() ([]byte, []int) {
 	return file_user_user_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *Conversation) GetUsername() string {
+func (x *Chat) GetUsername() string {
 	if x != nil {
 		return x.Username
 	}
 	return ""
 }
 
-func (x *Conversation) GetChatRef() string {
+func (x *Chat) GetChatRef() string {
 	if x != nil {
 		return x.ChatRef
 	}
@@ -304,24 +304,24 @@ const file_user_user_proto_rawDesc = "" +
 	"\n" +
 	"\x0fuser/user.proto\x12\x06userpb\x1a\x1bgoogle/protobuf/empty.proto\"%\n" +
 	"\vUserRequest\x12\x16\n" +
-	"\x06userId\x18\x01 \x01(\tR\x06userId\"\xbe\x01\n" +
+	"\x06userId\x18\x01 \x01(\tR\x06userId\"\xc2\x01\n" +
 	"\fUserResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x1a\n" +
 	"\busername\x18\x02 \x01(\tR\busername\x12\"\n" +
-	"\fpasswordHash\x18\x03 \x01(\tR\fpasswordHash\x12\"\n" +
-	"\finteractions\x18\x04 \x01(\tR\finteractions\x12\x1c\n" +
+	"\fpasswordHash\x18\x03 \x01(\tR\fpasswordHash\x12&\n" +
+	"\x0echatReferences\x18\x04 \x01(\tR\x0echatReferences\x12\x1c\n" +
 	"\tcreatedAt\x18\x05 \x01(\tR\tcreatedAt\x12\x1c\n" +
-	"\tupdatedAt\x18\x06 \x01(\tR\tupdatedAt\"|\n" +
-	"\x16AddConversationRequest\x12(\n" +
-	"\x04user\x18\x01 \x01(\v2\x14.userpb.UserResponseR\x04user\x128\n" +
-	"\fconversation\x18\x02 \x01(\v2\x14.userpb.ConversationR\fconversation\"D\n" +
-	"\fConversation\x12\x1a\n" +
+	"\tupdatedAt\x18\x06 \x01(\tR\tupdatedAt\"\\\n" +
+	"\x0eAddChatRequest\x12(\n" +
+	"\x04user\x18\x01 \x01(\v2\x14.userpb.UserResponseR\x04user\x12 \n" +
+	"\x04chat\x18\x02 \x01(\v2\f.userpb.ChatR\x04chat\"<\n" +
+	"\x04Chat\x12\x1a\n" +
 	"\busername\x18\x01 \x01(\tR\busername\x12\x18\n" +
 	"\achatRef\x18\x02 \x01(\tR\achatRef\">\n" +
 	"\x10UserListResponse\x12*\n" +
-	"\x05users\x18\x01 \x03(\v2\x14.userpb.UserResponseR\x05users2\xbf\x02\n" +
-	"\vUserService\x12I\n" +
-	"\x0fAddConversation\x12\x1e.userpb.AddConversationRequest\x1a\x16.google.protobuf.Empty\x127\n" +
+	"\x05users\x18\x01 \x03(\v2\x14.userpb.UserResponseR\x05users2\xb7\x02\n" +
+	"\vUserService\x12A\n" +
+	"\x0fAddConversation\x12\x16.userpb.AddChatRequest\x1a\x16.google.protobuf.Empty\x127\n" +
 	"\n" +
 	"DeleteUser\x12\x13.userpb.UserRequest\x1a\x14.userpb.UserResponse\x128\n" +
 	"\n" +
@@ -343,18 +343,18 @@ func file_user_user_proto_rawDescGZIP() []byte {
 
 var file_user_user_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_user_user_proto_goTypes = []any{
-	(*UserRequest)(nil),            // 0: userpb.UserRequest
-	(*UserResponse)(nil),           // 1: userpb.UserResponse
-	(*AddConversationRequest)(nil), // 2: userpb.AddConversationRequest
-	(*Conversation)(nil),           // 3: userpb.Conversation
-	(*UserListResponse)(nil),       // 4: userpb.UserListResponse
-	(*emptypb.Empty)(nil),          // 5: google.protobuf.Empty
+	(*UserRequest)(nil),      // 0: userpb.UserRequest
+	(*UserResponse)(nil),     // 1: userpb.UserResponse
+	(*AddChatRequest)(nil),   // 2: userpb.AddChatRequest
+	(*Chat)(nil),             // 3: userpb.Chat
+	(*UserListResponse)(nil), // 4: userpb.UserListResponse
+	(*emptypb.Empty)(nil),    // 5: google.protobuf.Empty
 }
 var file_user_user_proto_depIdxs = []int32{
-	1, // 0: userpb.AddConversationRequest.user:type_name -> userpb.UserResponse
-	3, // 1: userpb.AddConversationRequest.conversation:type_name -> userpb.Conversation
+	1, // 0: userpb.AddChatRequest.user:type_name -> userpb.UserResponse
+	3, // 1: userpb.AddChatRequest.chat:type_name -> userpb.Chat
 	1, // 2: userpb.UserListResponse.users:type_name -> userpb.UserResponse
-	2, // 3: userpb.UserService.AddConversation:input_type -> userpb.AddConversationRequest
+	2, // 3: userpb.UserService.AddConversation:input_type -> userpb.AddChatRequest
 	0, // 4: userpb.UserService.DeleteUser:input_type -> userpb.UserRequest
 	1, // 5: userpb.UserService.Insertuser:input_type -> userpb.UserResponse
 	0, // 6: userpb.UserService.GetUser:input_type -> userpb.UserRequest

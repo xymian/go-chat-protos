@@ -31,7 +31,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserServiceClient interface {
-	AddConversation(ctx context.Context, in *AddConversationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	AddConversation(ctx context.Context, in *AddChatRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DeleteUser(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserResponse, error)
 	Insertuser(ctx context.Context, in *UserResponse, opts ...grpc.CallOption) (*UserResponse, error)
 	GetUser(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserResponse, error)
@@ -46,7 +46,7 @@ func NewUserServiceClient(cc grpc.ClientConnInterface) UserServiceClient {
 	return &userServiceClient{cc}
 }
 
-func (c *userServiceClient) AddConversation(ctx context.Context, in *AddConversationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *userServiceClient) AddConversation(ctx context.Context, in *AddChatRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, UserService_AddConversation_FullMethodName, in, out, cOpts...)
@@ -100,7 +100,7 @@ func (c *userServiceClient) GetUsers(ctx context.Context, in *emptypb.Empty, opt
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility.
 type UserServiceServer interface {
-	AddConversation(context.Context, *AddConversationRequest) (*emptypb.Empty, error)
+	AddConversation(context.Context, *AddChatRequest) (*emptypb.Empty, error)
 	DeleteUser(context.Context, *UserRequest) (*UserResponse, error)
 	Insertuser(context.Context, *UserResponse) (*UserResponse, error)
 	GetUser(context.Context, *UserRequest) (*UserResponse, error)
@@ -115,7 +115,7 @@ type UserServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedUserServiceServer struct{}
 
-func (UnimplementedUserServiceServer) AddConversation(context.Context, *AddConversationRequest) (*emptypb.Empty, error) {
+func (UnimplementedUserServiceServer) AddConversation(context.Context, *AddChatRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddConversation not implemented")
 }
 func (UnimplementedUserServiceServer) DeleteUser(context.Context, *UserRequest) (*UserResponse, error) {
@@ -152,7 +152,7 @@ func RegisterUserServiceServer(s grpc.ServiceRegistrar, srv UserServiceServer) {
 }
 
 func _UserService_AddConversation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddConversationRequest)
+	in := new(AddChatRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -164,7 +164,7 @@ func _UserService_AddConversation_Handler(srv interface{}, ctx context.Context, 
 		FullMethod: UserService_AddConversation_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).AddConversation(ctx, req.(*AddConversationRequest))
+		return srv.(UserServiceServer).AddConversation(ctx, req.(*AddChatRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
