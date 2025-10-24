@@ -325,7 +325,7 @@ const file_user_user_proto_rawDesc = "" +
 	"\n" +
 	"DeleteUser\x12\x13.userpb.UserRequest\x1a\x14.userpb.UserResponse\x128\n" +
 	"\n" +
-	"Insertuser\x12\x14.userpb.UserResponse\x1a\x14.userpb.UserResponse\x124\n" +
+	"InsertUser\x12\x14.userpb.UserResponse\x1a\x14.userpb.UserResponse\x124\n" +
 	"\aGetUser\x12\x13.userpb.UserRequest\x1a\x14.userpb.UserResponse\x12<\n" +
 	"\bGetUsers\x12\x16.google.protobuf.Empty\x1a\x18.userpb.UserListResponseB\tZ\auserpb/b\x06proto3"
 
@@ -356,12 +356,12 @@ var file_user_user_proto_depIdxs = []int32{
 	1, // 2: userpb.UserListResponse.users:type_name -> userpb.UserResponse
 	2, // 3: userpb.UserService.AddConversation:input_type -> userpb.AddChatRequest
 	0, // 4: userpb.UserService.DeleteUser:input_type -> userpb.UserRequest
-	1, // 5: userpb.UserService.Insertuser:input_type -> userpb.UserResponse
+	1, // 5: userpb.UserService.InsertUser:input_type -> userpb.UserResponse
 	0, // 6: userpb.UserService.GetUser:input_type -> userpb.UserRequest
 	5, // 7: userpb.UserService.GetUsers:input_type -> google.protobuf.Empty
 	5, // 8: userpb.UserService.AddConversation:output_type -> google.protobuf.Empty
 	1, // 9: userpb.UserService.DeleteUser:output_type -> userpb.UserResponse
-	1, // 10: userpb.UserService.Insertuser:output_type -> userpb.UserResponse
+	1, // 10: userpb.UserService.InsertUser:output_type -> userpb.UserResponse
 	1, // 11: userpb.UserService.GetUser:output_type -> userpb.UserResponse
 	4, // 12: userpb.UserService.GetUsers:output_type -> userpb.UserListResponse
 	8, // [8:13] is the sub-list for method output_type

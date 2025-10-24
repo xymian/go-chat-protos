@@ -37,7 +37,7 @@ message UserListResponse {
 service UserService {
     rpc AddConversation(AddChatRequest) returns (google.protobuf.Empty);
     rpc DeleteUser(UserRequest) returns (UserResponse);
-    rpc Insertuser(UserResponse) returns (UserResponse);
+    rpc InsertUser(UserResponse) returns (UserResponse);
     rpc GetUser(UserRequest) returns (UserResponse);
     rpc GetUsers(google.protobuf.Empty) returns (UserListResponse);
 }

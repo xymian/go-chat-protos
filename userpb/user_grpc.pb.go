@@ -22,7 +22,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	UserService_AddConversation_FullMethodName = "/userpb.UserService/AddConversation"
 	UserService_DeleteUser_FullMethodName      = "/userpb.UserService/DeleteUser"
-	UserService_Insertuser_FullMethodName      = "/userpb.UserService/Insertuser"
+	UserService_InsertUser_FullMethodName      = "/userpb.UserService/InsertUser"
 	UserService_GetUser_FullMethodName         = "/userpb.UserService/GetUser"
 	UserService_GetUsers_FullMethodName        = "/userpb.UserService/GetUsers"
 )
@@ -33,7 +33,7 @@ const (
 type UserServiceClient interface {
 	AddConversation(ctx context.Context, in *AddChatRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DeleteUser(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserResponse, error)
-	Insertuser(ctx context.Context, in *UserResponse, opts ...grpc.CallOption) (*UserResponse, error)
+	InsertUser(ctx context.Context, in *UserResponse, opts ...grpc.CallOption) (*UserResponse, error)
 	GetUser(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserResponse, error)
 	GetUsers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*UserListResponse, error)
 }
@@ -66,10 +66,10 @@ func (c *userServiceClient) DeleteUser(ctx context.Context, in *UserRequest, opt
 	return out, nil
 }
 
-func (c *userServiceClient) Insertuser(ctx context.Context, in *UserResponse, opts ...grpc.CallOption) (*UserResponse, error) {
+func (c *userServiceClient) InsertUser(ctx context.Context, in *UserResponse, opts ...grpc.CallOption) (*UserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UserResponse)
-	err := c.cc.Invoke(ctx, UserService_Insertuser_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, UserService_InsertUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (c *userServiceClient) GetUsers(ctx context.Context, in *emptypb.Empty, opt
 type UserServiceServer interface {
 	AddConversation(context.Context, *AddChatRequest) (*emptypb.Empty, error)
 	DeleteUser(context.Context, *UserRequest) (*UserResponse, error)
-	Insertuser(context.Context, *UserResponse) (*UserResponse, error)
+	InsertUser(context.Context, *UserResponse) (*UserResponse, error)
 	GetUser(context.Context, *UserRequest) (*UserResponse, error)
 	GetUsers(context.Context, *emptypb.Empty) (*UserListResponse, error)
 	mustEmbedUnimplementedUserServiceServer()
@@ -121,8 +121,8 @@ func (UnimplementedUserServiceServer) AddConversation(context.Context, *AddChatR
 func (UnimplementedUserServiceServer) DeleteUser(context.Context, *UserRequest) (*UserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUser not implemented")
 }
-func (UnimplementedUserServiceServer) Insertuser(context.Context, *UserResponse) (*UserResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Insertuser not implemented")
+func (UnimplementedUserServiceServer) InsertUser(context.Context, *UserResponse) (*UserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InsertUser not implemented")
 }
 func (UnimplementedUserServiceServer) GetUser(context.Context, *UserRequest) (*UserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUser not implemented")
@@ -187,20 +187,20 @@ func _UserService_DeleteUser_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_Insertuser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserService_InsertUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UserResponse)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).Insertuser(ctx, in)
+		return srv.(UserServiceServer).InsertUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UserService_Insertuser_FullMethodName,
+		FullMethod: UserService_InsertUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).Insertuser(ctx, req.(*UserResponse))
+		return srv.(UserServiceServer).InsertUser(ctx, req.(*UserResponse))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -257,8 +257,8 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _UserService_DeleteUser_Handler,
 		},
 		{
-			MethodName: "Insertuser",
-			Handler:    _UserService_Insertuser_Handler,
+			MethodName: "InsertUser",
+			Handler:    _UserService_InsertUser_Handler,
 		},
 		{
 			MethodName: "GetUser",
